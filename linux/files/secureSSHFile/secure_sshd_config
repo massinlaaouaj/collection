@@ -1,0 +1,71 @@
+#       $OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $
+
+# SECURE YOUR SSHD_CONFIG
+# REPO: https://github.com/massinlaaouaj/Templates
+
+# [INFO]
+# THIS CONFIGURATION DOESN't INCLUDE DEFAULTS OF OpenSSH, ONLY
+# CLEAN CONF.
+# The restriction of this service is a good policy to fortify the security
+# of our servers.
+
+# 1.Change your ssh port, example (Remember there are ports that is 
+# resticed for some services):
+Port 4554
+
+# 2.Only can access with IPv4:
+AddressFamily inet
+
+# 3.If you want to record more information - such as failed login attempts
+# - you should increase the logging level to VERBOSE:
+LogLevel VERBOSE
+
+# 4.Disable Root Access:
+PermitRootLogin no
+
+# 5.Specifies the maximum number of authentication attempts permitted per
+# connection:
+MaxAuthTries 3
+MaxSessions 3
+
+# 6.specifies if the SSH server allows login to accounts with empty
+# password strings:
+PermitEmptyPasswords no
+
+# 7.Control support for the "keyboard-interactive" authentication:
+ChallengeResponseAuthentication no
+
+# 8.If we use passwords we don't need PAM (Pluggable Authentication Modules
+# ) and we allow sshd to function as a non-root user:
+UsePAM yes
+
+# 9.Print the date and time of the last user login:
+PrintLastLog yes
+
+# 10.It tells us that the sshd server will send keepalive messages to the
+# client after it detects some inactivity. It is advisable to disable it to$TCPKeepAlive no
+
+# 11.Specifies the maximum number of concurrent unauthenticated connections
+# to the SSH daemon:
+MaxStartups 3
+
+# 12.Create your own banner:
+Banner /etc/ssh/banner_ssh
+
+# 13.Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
+
+# 14.Override default of no subsystems
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+
+# 15.Limit the system users who can enter via SSH:
+#AllowUsers [username1] [username2]...
+
+# 16.There are two versions of SSH in terms of its communication protocol,
+# SSHv1 and SSHv2.
+#       SSHv1 protocol is deprecated, but is still included for
+#       compatibility. SSHv1 has several known vulnerabilities.
+
+#       SSHv2 protocol, which has an improved key exchange algorithm and
+#       is not vulnerable.
+Protocol 2
