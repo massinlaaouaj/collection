@@ -27,7 +27,8 @@
     │   ├── ps1/
     │   │   ├── create_command_shortcut.ps1
     │   │   ├── pc_info.ps1
-    │   │   └── uninstall_apps.ps1
+    │   │   ├── uninstall_apps.ps1
+    │   │   └── get_SID_from_user.ps1
     │   └──software/
     │       └── networking/
     │           ├── burp_suite/
